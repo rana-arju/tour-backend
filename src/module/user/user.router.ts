@@ -1,23 +1,19 @@
-import { NextFunction, Request, Response, Router } from 'express'
+import {  Router } from 'express'
 import { userController } from './user.controller'
 import { UserValidation } from './userValidation'
+import { auth } from '../../middlewares/auth'
+import { validationRequest } from '../../middlewares/validationRequest'
 
 const userRouter = Router()
 
-userRouter.post('/create-user', async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        console.log({ body: req.body });
-        const parsedBody = await UserValidation.userValidationSchema.parseAsync(req.body)
-        req.body = parsedBody
-        console.log({ parsedBody });
-        next()
-    } catch (error) {
-        next(error)
-    }
-}, userController.createUser)
+userRouter.post(
+  '/create-user',
+  validationRequest(UserValidation.userValidationSchema),
+  userController.createUser
+)
 userRouter.get('/:userId', userController.getSingleUser)
 userRouter.put('/:userId', userController.updateUser)
 userRouter.delete('/:userId', userController.deleteUser)
-userRouter.get('/', userController.getUser)
+userRouter.get('/', auth('user', 'admin'), userController.getUser)
 
 export default userRouter

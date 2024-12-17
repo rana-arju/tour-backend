@@ -1,9 +1,9 @@
-
 import express, { Request, Response } from 'express'
 import { globalErrorHandler } from './middlewares/globalErrorHandler'
 import bookingRouter from './module/booking/booking.route'
 import tourRouter from './module/tour/tour.route'
 import userRouter from './module/user/user.router'
+import authRouter from './module/auth/auth.router'
 
 const app = express()
 
@@ -13,6 +13,7 @@ app.use(express.json())
 app.use('/api/user', userRouter)
 app.use('/api/tour', tourRouter)
 app.use('/api/booking', bookingRouter)
+app.use('/api/auth', authRouter)
 
 // POST: /api/user/create-user
 
@@ -23,18 +24,17 @@ app.get('/', (req: Request, res: Response) => {
   })
 })
 
-
 app.use(globalErrorHandler)
 
-app.use("*", (req: Request, res: Response) => {
+app.use('*', (req: Request, res: Response) => {
   res.status(404).json({
     status: false,
-    message: 'Route not found'
+    message: 'Route not found',
   })
 })
 
 export default app
 
-// req, res > jwt funtion next() > function 
-// express -> workflow = 
+// req, res > jwt funtion next() > function
+// express -> workflow =
 // train -> [router]-[controller -error]-[service - error]-[errorHandler]->
