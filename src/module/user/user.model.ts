@@ -23,7 +23,11 @@ const userSchema = new Schema<IUser>({
     },
     immutable: true,
   },
-  password: { type: String, required: [true, 'Please enter your password'], select: 0 },
+  password: {
+    type: String,
+    required: [true, 'Please enter your password'],
+    select: 0,
+  },
 
   photo: String,
   role: {
@@ -44,7 +48,6 @@ const userSchema = new Schema<IUser>({
 })
 
 // hook -> pre
-
 
 userSchema.pre('save', async function (next) {
   const user = this

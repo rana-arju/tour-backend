@@ -2,7 +2,8 @@ import { Router } from 'express'
 import { authController } from './auth.controller'
 import { validationRequest } from '../../middlewares/validationRequest'
 import { UserValidation } from '../user/userValidation'
-import loginValidation from './auth.validation'
+import { AuthValidition } from './auth.validation'
+import { auth } from '../../middlewares/auth'
 
 const authRouter = Router()
 
@@ -13,13 +14,19 @@ authRouter.post(
 )
 authRouter.post(
   '/login',
-  validationRequest(loginValidation),
+  validationRequest(AuthValidition.loginValidation),
   authController.userLogin
 )
 authRouter.post(
   '/forget-password',
-  validationRequest(loginValidation),
-  authController.userLogin
+  validationRequest(AuthValidition.forgetPasswordValidation),
+  authController.forgetPassword
+)
+authRouter.post(
+  '/reset-password',
+  auth('user', 'admin'),
+  validationRequest(AuthValidition.resettPasswordValidation),
+  authController.resetPassword
 )
 
 export default authRouter

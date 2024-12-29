@@ -67,8 +67,13 @@ const getTours = (query) => __awaiter(void 0, void 0, void 0, function* () {
     //  const result = await sortQuery.select(fields);
     //  (modelQuery,query )=>{...}
     // modelQuery.model.schema.path
-    const searchableFields = ["name", "startLocation", "locations"];
-    const tours = new querybuilder_1.default(tour_model_1.default.find(), query).search(searchableFields).filter().sort().paginate().select();
+    const searchableFields = ['name', 'startLocation', 'locations'];
+    const tours = new querybuilder_1.default(tour_model_1.default.find(), query)
+        .search(searchableFields)
+        .filter()
+        .sort()
+        .paginate()
+        .select();
     const result = yield tours.modelQuery;
     return result;
 });

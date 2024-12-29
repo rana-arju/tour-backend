@@ -13,15 +13,14 @@ const createTour = async (payload: ITour) => {
   return result
 }
 
-const getTours = async (query: Record<string, unknown> ) => {
+const getTours = async (query: Record<string, unknown>) => {
   // //{searterm: "searter"}
   // console.log("main",query);
 
   // const queryObj= {...query};
 
-  
   // const excludingImportant =["searchTerm", "page", "limit","sortOrder", "sortBy", "fields"];
-  
+
   // // jesob field amdr filtering a drkr nei sesob baad dicchi
   // excludingImportant.forEach(key=> delete queryObj[key]);
 
@@ -65,13 +64,12 @@ const getTours = async (query: Record<string, unknown> ) => {
   //     // "-price" othoba "price"
   //      sortStr = `${sortOrder ==="desc"?'-':''}${sortBy}`
   // }
- 
 
   // // const result = await paginatedQuery.sort(sortStr);
   // const sortQuery =  paginatedQuery.sort(sortStr);
 
   // let fields = "-__v";
-  
+
   // if(query?.fields){
   //   fields = (query.fields as string)?.split(",").join(" ");
   //  }
@@ -81,11 +79,16 @@ const getTours = async (query: Record<string, unknown> ) => {
   //  (modelQuery,query )=>{...}
   // modelQuery.model.schema.path
 
-  const searchableFields = ["name", "startLocation", "locations"];
-  const tours = new QueryBuilder(Tour.find(), query).search(searchableFields).filter().sort().paginate().select();
+  const searchableFields = ['name', 'startLocation', 'locations']
+  const tours = new QueryBuilder(Tour.find(), query)
+    .search(searchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .select()
 
-  const result = await tours.modelQuery;
-  return result;
+  const result = await tours.modelQuery
+  return result
 }
 
 const getSingleTour = async (id: string) => {

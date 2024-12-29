@@ -20,8 +20,6 @@ const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const user_service_1 = require("./user.service");
 const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = req.body;
-    console.log({ payload });
-    console.log(payload);
     const result = yield user_service_1.userService.createUser(payload);
     // res.json({
     //   status: true,

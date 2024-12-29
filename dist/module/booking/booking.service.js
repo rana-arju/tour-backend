@@ -39,7 +39,7 @@ const createBooking = (payload) => __awaiter(void 0, void 0, void 0, function* (
     // return booking
     // Clone database
     // sandbox - test database
-    // database - error 
+    // database - error
     // database - delete
     // database - success
     // database - merge
@@ -86,5 +86,5 @@ const createBooking = (payload) => __awaiter(void 0, void 0, void 0, function* (
  *
  */
 exports.BookingService = {
-    createBooking
+    createBooking,
 };

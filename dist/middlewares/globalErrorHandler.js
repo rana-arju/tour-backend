@@ -11,7 +11,7 @@ const handleGenericError_1 = require("../helpers/handleGenericError");
 const handlerValidationError_1 = require("../helpers/handlerValidationError");
 const handleZodError_1 = require("../helpers/handleZodError");
 const globalErrorHandler = (err, req, res, _next) => {
-    if (err.name && err.name === "ZodError") {
+    if (err.name && err.name === 'ZodError') {
         (0, handleZodError_1.handlerZodError)(err, res);
     }
     else if (err instanceof mongoose_1.default.Error.CastError) {
@@ -37,4 +37,4 @@ exports.globalErrorHandler = globalErrorHandler;
  *
  * any error is a instance of Error Class of JS
  *
- */ 
+ */

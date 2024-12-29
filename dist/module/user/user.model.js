@@ -36,7 +36,11 @@ const userSchema = new mongoose_1.Schema({
         },
         immutable: true,
     },
-    password: { type: String, required: [true, 'Please enter your password'], select: 0 },
+    password: {
+        type: String,
+        required: [true, 'Please enter your password'],
+        select: 0,
+    },
     photo: String,
     role: {
         type: String,

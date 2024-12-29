@@ -5,14 +5,14 @@ const handlerZodError = (err, res) => {
     const issues = err.issues.map((item) => {
         return {
             path: item.path.join('>'),
-            message: item.message
+            message: item.message,
         };
     });
     res.status(400).json({
         success: false,
         message: err.message,
         issues: issues,
-        error: err
+        error: err,
     });
 };
 exports.handlerZodError = handlerZodError;

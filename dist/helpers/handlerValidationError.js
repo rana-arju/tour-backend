@@ -7,14 +7,14 @@ const handleValidationError = (err, res) => {
         return {
             name: item.name,
             path: item.path,
-            message: item.message
+            message: item.message,
         };
     });
     res.status(400).json({
         success: false,
         message: err.message,
         issues: issues,
-        error: err
+        error: err,
     });
 };
 exports.handleValidationError = handleValidationError;

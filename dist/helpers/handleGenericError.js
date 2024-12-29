@@ -6,7 +6,7 @@ const handleGenericError = (err, res) => {
     res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: err.message,
-        error: err
+        error: err,
     });
 };
 exports.handleGenericError = handleGenericError;

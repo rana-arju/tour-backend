@@ -5,9 +5,8 @@
 // update booking
 // delete booking = soft delete
 
-import express from 'express';
-import { bookingController } from './booking.controller';
-
+import express from 'express'
+import { bookingController } from './booking.controller'
 
 const bookingRouter = express.Router()
 

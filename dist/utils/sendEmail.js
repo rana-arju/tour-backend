@@ -12,20 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.bookingController = void 0;
-const http_status_codes_1 = require("http-status-codes");
-const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
-const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
-const booking_service_1 = require("./booking.service");
-const createBooking = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const body = req.body;
-    const result = yield booking_service_1.BookingService.createBooking(body);
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_codes_1.StatusCodes.OK,
-        message: 'Booking created successfully',
-        data: result,
+const nodemailer_1 = __importDefault(require("nodemailer"));
+const config_1 = __importDefault(require("../config"));
+const sendEmail = (email, html) => __awaiter(void 0, void 0, void 0, function* () {
+    const transporter = nodemailer_1.default.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: process.env.NODE_ENV === 'production', // true for port 465, false for other ports
+        auth: {
+            user: config_1.default.email_user,
+            pass: config_1.default.email_pass,
+        },
     });
-}));
-exports.bookingController = {
-    createBooking,
-};
+    yield transporter.sendMail({
+        from: config_1.default.email_user,
+        to: email,
+        subject: 'Reset your password withing 10 minutes', // Subject line
+        text: '',
+        html,
+    });
+});
+exports.default = sendEmail;

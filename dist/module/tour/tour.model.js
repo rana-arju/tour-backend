@@ -20,7 +20,7 @@ const tourSchema = new mongoose_1.Schema({
     },
     availableSeats: {
         type: Number,
-        required: true
+        required: true,
     },
     coverImage: { type: String, required: true },
     images: [String],

@@ -33,10 +33,31 @@ const userLogin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_codes_1.StatusCodes.OK,
         message: 'User login successful',
-        data: result
+        data: result,
+    });
+}));
+const forgetPassword = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const payload = req.body;
+    yield auth_service_1.authService.forgetPassword(payload);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_codes_1.StatusCodes.OK,
+        message: 'Password reset emeail send. Please check your email.',
+        data: null,
+    });
+}));
+const resetPassword = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const payload = req.body;
+    const user = req.user;
+    yield auth_service_1.authService.resetPassword(payload, user);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_codes_1.StatusCodes.OK,
+        message: 'Password reset successfully',
+        data: null,
     });
 }));
 exports.authController = {
     userRegister,
     userLogin,
+    forgetPassword,
+    resetPassword,
 };

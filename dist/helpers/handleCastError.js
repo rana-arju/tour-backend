@@ -6,7 +6,7 @@ const handleCastError = (err, res) => {
     res.status(400).json({
         success: false,
         message: err.message,
-        error: err
+        error: err,
     });
 };
 exports.handleCastError = handleCastError;

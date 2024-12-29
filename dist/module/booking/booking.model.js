@@ -4,27 +4,27 @@ const mongoose_1 = require("mongoose");
 const bookingSchema = new mongoose_1.Schema({
     user: {
         type: mongoose_1.Schema.Types.ObjectId,
-        required: true
+        required: true,
     },
     tour: {
         type: mongoose_1.Schema.Types.ObjectId,
-        required: true
+        required: true,
     },
     bookedSlots: {
         type: Number,
-        required: true
+        required: true,
     },
     bookingStatus: {
         type: String,
         enum: ['pending', 'paid', 'cancelled'],
-        default: 'pending'
+        default: 'pending',
     },
     totalPrice: {
         type: Number,
-        required: true
-    }
+        required: true,
+    },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 const Booking = (0, mongoose_1.model)('Booking', bookingSchema);
 exports.default = Booking;

@@ -34,9 +34,9 @@ class QueryBuilder<T> {
     // jesob field amdr filtering a drkr nei sesob baad dicchi
     excludingImportant.forEach((key) => delete queryObj[key])
 
-    this.modelQuery = this.modelQuery.find(queryObj);
+    this.modelQuery = this.modelQuery.find(queryObj)
 
-    return this;
+    return this
   }
 
   paginate() {
@@ -78,5 +78,4 @@ class QueryBuilder<T> {
   }
 }
 
-
-export default QueryBuilder;
+export default QueryBuilder

@@ -17,7 +17,7 @@ const catchAsync_1 = __importDefault(require("../utils/catchAsync"));
 const validationRequest = (schema) => {
     return (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         yield schema.parseAsync({
-            body: req.body
+            body: req.body,
         });
         next();
     }));
