@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tour_controller_1 = require("./tour.controller");
+const tourRouter = (0, express_1.Router)();
+tourRouter.get('/schedule/:id', tour_controller_1.tourController.getNextSchedule);
+tourRouter.get('/:id', tour_controller_1.tourController.getSingleTour);
+tourRouter.get('/', tour_controller_1.tourController.getTours);
+tourRouter.post('/', tour_controller_1.tourController.createTour);
+tourRouter.put('/:id', tour_controller_1.tourController.updateTour);
+tourRouter.delete('/:id', tour_controller_1.tourController.deleteTour);
+exports.default = tourRouter;
